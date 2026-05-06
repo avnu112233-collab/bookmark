@@ -53,7 +53,8 @@ function updateDashboardStats(targetDate) {
                 insideHtml += `
             <tr>
                 <td style="font-weight: 500;">${user.name}</td>
-                <td>${user.usn || ''}</td>
+                <td><span class="usn-badge">${user.usn || ''}</span></td>
+                <td><span style="color: var(--color-primary); font-weight: 600;">${user.class || '—'}</span></td>
                 <td style="text-align: left; color: var(--color-success); font-weight: 600;">${timeStr}</td>
             </tr>
         `;
@@ -129,9 +130,9 @@ function renderTable() {
         const badgeText = record.log_type;
 
         // Parse class for branch if available
-        let branch = '—';
-        if (record.class && record.class.includes('-')) {
-            const parts = record.class.split('-');
+        let branch = record.class || '—';
+        if (branch.includes('-')) {
+            const parts = branch.split('-');
             if (parts.length >= 2) branch = parts[1];
         }
 

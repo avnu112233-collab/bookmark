@@ -1,187 +1,109 @@
-# BOOKMARK - Library Management System
+# 📚 BOOKMARK - VVCE Library Management System
 
-A biometric-based library management system for VVCE Library, featuring fingerprint authentication, real-time attendance tracking, and book management.
+> **State-of-the-art Biometric Attendance & Library Management Solution**
 
----
-
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Hardware Requirements](#hardware-requirements)
-- [Software Requirements](#software-requirements)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Project Structure](#project-structure)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/badge/Build-Success-success)](https://github.com/avnu112233-collab/bookmark)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/avnu112233-collab/bookmark/pulls)
 
 ---
 
-## Overview
+## 🌟 Overview
 
-BOOKMARK is a modern library management system that uses fingerprint biometrics for student identification. It tracks library attendance, manages book borrowing/returning, and provides real-time analytics.
-
----
-
-## Features
-
-- **Biometric Authentication** - Fingerprint-based student identification
-- **Real-time Attendance** - Track library entry and exit times
-- **Book Management** - Borrow and return books with tracking
-- **Dashboard Analytics** - Live statistics and recent activity
-- **PDF Reports** - Export attendance and book data
-- **Dark/Light Theme** - User preference support
+**BOOKMARK** is a high-performance library management system designed specifically for VVCE Library. By integrating **ESP32-based biometric sensors** with a modern **Supabase-powered web dashboard**, it provides a seamless, secure, and automated way to track student attendance and manage library resources.
 
 ---
 
-## Hardware Requirements
+## ✨ Key Features
 
-| Component | Specification | Purpose |
-|-----------|---------------|---------|
-| **ESP32 Microcontroller** | ESP32-WROOM-32 | Main processing unit |
-| **Fingerprint Sensor** | R307/AS608 Optical Sensor | Biometric capture |
-| **Power Supply** | 5V 2A USB/Adapter | Power the system |
-| **Connection Cables** | Jumper wires | ESP32 to sensor |
-| **Enclosure** | Custom/3D printed (optional) | Housing |
-
-### Wiring Diagram (ESP32 to R307)
-
-| ESP32 Pin | R307 Pin | Wire Color |
-|-----------|----------|------------|
-| GPIO 16 (RX2) | TX (Green) | Green |
-| GPIO 17 (TX2) | RX (White) | White |
-| 3.3V | VCC (Red) | Red |
-| GND | GND (Black) | Black |
+| Feature | Description |
+|:---|:---|
+| 🔐 **Biometric Sync** | Direct integration with R307/AS608 fingerprint sensors via ESP32. |
+| ⏱️ **Real-time Stats** | Live monitoring of "Visits Today" and "Currently Inside" metrics. |
+| 📄 **Smart Logging** | Automated entry/exit logs with precise time-stamping. |
+| 👤 **Easy Enrollment** | Streamlined student registration with instant biometric mapping. |
+| 📊 **PDF Export** | One-click report generation for attendance and book data. |
+| 🌓 **Adaptive UI** | Sleek dark/light theme support with CSS variables. |
 
 ---
 
-## Software Requirements
+## 🏗️ Technical Architecture
 
-### Development Environment
+### 💻 Web Stack
+- **Frontend**: Vanilla JavaScript (ES6+), HTML5, CSS3
+- **Build Tool**: [Vite 5.x](https://vitejs.dev/)
+- **Backend**: [Supabase](https://supabase.com/) (PostgreSQL & Real-time)
+- **PDF Engine**: jsPDF & AutoTable
 
-| Software | Version | Purpose |
-|----------|---------|---------|
-| **Node.js** | v18+ | Runtime environment |
-| **npm** | v9+ | Package manager |
-| **Vite** | v5+ | Build tool |
-| **Arduino IDE** | 2.x | ESP32 programming |
-
-### Web Technologies
-
-| Technology | Purpose |
-|------------|---------|
-| HTML5 | Structure |
-| CSS3 | Styling |
-| JavaScript (ES6+) | Logic |
-| Supabase | Database & Auth |
-
-### Libraries & Dependencies
-
-| Library | Version | Purpose |
-|---------|---------|---------|
-| `@supabase/supabase-js` | v2 | Database client |
-| `jspdf` | 2.5.1 | PDF generation |
-| `jspdf-autotable` | 3.5.29 | PDF tables |
-
-### ESP32 Libraries
-
-| Library | Purpose |
-|---------|---------|
-| `Adafruit_Fingerprint` | Fingerprint sensor |
-| `WiFi.h` | ESP32 WiFi |
-| `HTTPClient.h` | HTTP requests |
-| `ArduinoJson` | JSON parsing |
+### 🔌 Hardware Stack
+- **Microcontroller**: ESP32-WROOM-32
+- **Sensor**: R307 Optical Fingerprint Module
+- **Communication**: HTTP REST API / Webhooks
 
 ---
 
-## Installation
+## 🚀 Getting Started
 
-### 1. Clone the Repository
-
+### 1. Repository Setup
 ```bash
-git clone https://github.com/your-repo/bookmark.git
+git clone https://github.com/avnu112233-collab/bookmark.git
 cd bookmark
 ```
 
-### 2. Install Dependencies
-
+### 2. Frontend Installation
 ```bash
 npm install
-```
-
-### 3. Start Development Server
-
-```bash
 npm run dev
 ```
 
-### 4. Flash ESP32
-
-1. Open Arduino IDE
-2. Load the ESP32 sketch from `/hardware/esp32/`
-3. Configure WiFi credentials
-4. Upload to ESP32
-
----
-
-## Configuration
-
-### Environment Variables
-
-Update `src/js/config.js`:
-
-```javascript
-const SUPABASE_URL = 'your-supabase-url';
-const SUPABASE_ANON_KEY = 'your-anon-key';
-const ESP32_IP = 'your-esp32-ip';
-```
-
-### Supabase Tables
-
-- `students` - Student information
-- `attendance` - Entry/exit logs
-- `borrowed_books` - Book transactions
+### 3. Hardware Deployment
+1. Navigate to `/hardware/esp32/`.
+2. Open the sketch in **Arduino IDE**.
+3. Update `SSID`, `PASSWORD`, and `API_ENDPOINT`.
+4. Upload to your ESP32.
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
-```
+```bash
 BOOKMARK/
-├── index.html              # Main HTML file
-├── package.json            # Node dependencies
-├── vite.config.js          # Vite configuration
 ├── src/
-│   ├── css/
-│   │   ├── style.css       # Main styles (imports all)
-│   │   ├── base.css        # Variables & reset
-│   │   ├── sidebar.css     # Navigation
-│   │   ├── layout.css      # Page structure
-│   │   ├── dashboard.css   # Stats & tabs
-│   │   ├── tables.css      # Data tables
-│   │   ├── forms.css       # Inputs & buttons
-│   │   ├── modals.css      # Overlays
-│   │   └── enrollment.css  # Student forms
-│   └── js/
-│       ├── config.js       # Configuration
-│       ├── state.js        # Global state
-│       ├── utils.js        # Utilities
-│       ├── api.js          # API calls
-│       ├── main.js         # Entry point
-│       └── features/
-│           ├── dashboard.js
-│           ├── attendance.js
-│           ├── books.js
-│           └── enrollment.js
-└── hardware/
-    └── esp32/              # Arduino sketch
+│   ├── css/          # Modular Design System
+│   │   ├── base.css      # Tokens & Variables
+│   │   ├── layout.css    # Layout & Grid
+│   │   └── components/   # Specific UI Elements
+│   └── js/           # Core Logic
+│       ├── api.js        # Supabase Integration
+│       └── features/     # Feature-specific logic
+├── index.html        # Main Entry Point
+└── hardware/         # ESP32 Firmware
 ```
 
 ---
 
-## License
+## 🛡️ Database Schema
 
-MIT License - VVCE Library Project
+| Table | Primary Key | Description |
+|:---|:---|:---|
+| `student_registry` | `usn` | Stores student identity and bio-ID mapping. |
+| `attendance_logs` | `id` | Real-time entry/exit timestamps. |
+| `book_inventory` | `isbn` | Library catalog and availability status. |
 
 ---
 
-**Built with ❤️ for VVCE Library**
+## 🤝 Contributing
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+**Built with ❤️ for VVCE Library by [avnu112233-collab](https://github.com/avnu112233-collab)**

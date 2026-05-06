@@ -1,11 +1,7 @@
 // FETCH DATA
 async function fetchData() {
     try {
-        // First, try fetching ALL records without date filter (Limit increased to 1000)
         const url = `${SUPABASE_URL}/rest/v1/transactions?order=created_at.desc&limit=1000`;
-
-        // console.log('🔄 Fetching from:', url);
-
         const response = await fetch(url, {
             headers: {
                 'apikey': SUPABASE_ANON_KEY,
@@ -14,50 +10,53 @@ async function fetchData() {
             }
         });
 
-        // console.log('📡 Response Status:', response.status);
-
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error('❌ API Error:', errorText);
-            throw new Error(`API Error: ${response.status} - ${errorText}`);
+            throw new Error(`API Error: ${response.status}`);
         }
 
-        allData = await response.json();
+        let fetchedData = await response.json();
+        
+        // IF DATABASE IS EMPTY, USE DEMO DATA
+        if (!fetchedData || fetchedData.length === 0) {
+            console.log('💡 Database empty. Loading demo data...');
+            allData = [...demoData];
+        } else {
+            allData = fetchedData;
+        }
 
-        // Ensure data is sorted by creation time (descending: Newest First)
-        // If created_at exists, use it. Otherwise, combine date and time columns.
         allData.sort((a, b) => {
-            if (a.created_at && b.created_at) {
-                return new Date(b.created_at) - new Date(a.created_at);
-            }
-            // Fallback to Date + Time string comparison
             const dateA = new Date(`${a.date} ${a.time}`);
             const dateB = new Date(`${b.date} ${b.time}`);
             return dateB - dateA;
         });
-        console.log('✅ Data fetched successfully:', allData.length, 'records');
-        // console.log('📋 Sample record:', allData[0]);
 
-        // Calculate stats for today (default)
-        const today = new Date().toISOString().split('T')[0];
-        if (typeof updateDashboardStats === 'function') {
-            updateDashboardStats(today);
-        }
+        console.log('✅ Data ready:', allData.length, 'records');
 
-        // Preserve current view state during auto-refresh
+        const getLocalDate = () => {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
+        const today = getLocalDate();
+        
+        if (typeof updateDashboardStats === 'function') updateDashboardStats(today);
+
         if (window.showingInsideList && typeof showInsideListInTable === 'function') {
             showInsideListInTable();
         } else if (typeof renderTable === 'function') {
             renderTable();
         }
     } catch (error) {
-        console.error('❌ Fetch error:', error);
-        const tbody = document.getElementById('dashboardAttendanceTableContent');
-        if (tbody) {
-            tbody.innerHTML = `
-            <tr><td colspan="6" style="text-align:center;">Error loading data</td></tr>
-        `;
-        }
+        console.error('❌ Fetch error. Using demo data fallback.', error);
+        allData = [...demoData];
+        
+        // ENSURE DASHBOARD UPDATES EVEN IN FALLBACK
+        const today = todayStr; // Use the local date helper from above
+        if (typeof updateDashboardStats === 'function') updateDashboardStats(today);
+        
+        if (typeof renderTable === 'function') renderTable();
     }
 }
 

@@ -17,9 +17,12 @@ function renderAttendanceRows(rows) {
     rows.forEach(record => {
         const name = record.NAME || record.name || '\u2014';
         const usn = record.USN || record.usn || '\u2014';
-        const classInfo = record.class ||
-            ((record.branch || record.BRANCH) ? `${record.branch}-${record.semester || ''}` : '') ||
-            '\u2014';
+        let classInfo = record.class || record.branch || record.BRANCH || '\u2014';
+        // Support legacy format 5-CS-A -> CS
+        if (classInfo.includes('-')) {
+            const parts = classInfo.split('-');
+            if (parts.length >= 2) classInfo = parts[1];
+        }
 
         const isLogin = (record.log_type === 'LOGIN' || record.type === 'IN');
         const badge = isLogin ?
@@ -88,7 +91,10 @@ function renderAttendanceLogs() {
 
         // Branch filter
         if (branchFilter && record.class) {
-            const branch = record.class.split('-')[1]; // Extract BRANCH from "5-CS-A"
+            let branch = record.class;
+            if (branch.includes('-')) {
+                branch = branch.split('-')[1];
+            }
             if (branch !== branchFilter) return false;
         }
 

@@ -5,6 +5,10 @@ function init() {
 
     // setDefaultDate();
     updateTime();
+    
+    // Force immediate dashboard update with initial state data
+    if (typeof updateDashboardStats === 'function') updateDashboardStats(todayStr);
+    
     fetchData();
     setInterval(updateTime, 1000);
     setInterval(fetchData, 3000); // Auto-refresh every 3 seconds
@@ -131,7 +135,7 @@ function openFilterModal(filterType) {
     } else if (filterType === 'borrowedBranch' || filterType === 'attendanceBranch') {
         currentType = filterType === 'borrowedBranch' ? 'borrowed' : 'attendance';
         title.textContent = 'Filter by Branch';
-        const branches = ['CS', 'EC', 'ME', 'CV', 'EE'];
+        const branches = ['CSE', 'ECE', 'ME', 'CIVIL', 'ISE'];
         html = `
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0;">
             ${branches.map(branch => `

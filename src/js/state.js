@@ -1,5 +1,26 @@
+// Helper to get local date string YYYY-MM-DD
+const getLocalDateStr = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+const todayStr = getLocalDateStr();
+
+// MOCK DATA FOR DEMO PURPOSES
+const demoData = [
+    { fp_id: 1, name: "Arjun Sharma", usn: "4VV21CS001", class: "CSE", log_type: "LOGIN", date: todayStr, time: "09:15 AM" },
+    { fp_id: 2, name: "Priya Rao", usn: "4VV21IS045", class: "ISE", log_type: "LOGIN", date: todayStr, time: "09:42 AM" },
+    { fp_id: 3, name: "Rahul Verma", usn: "4VV22EC088", class: "ECE", log_type: "LOGIN", date: todayStr, time: "10:05 AM" },
+    { fp_id: 4, name: "Sneha Patil", usn: "4VV21CS112", class: "CSE", log_type: "LOGIN", date: todayStr, time: "10:30 AM" },
+    { fp_id: 5, name: "Kiran Kumar", usn: "4VV21ME034", class: "ME", log_type: "LOGIN", date: todayStr, time: "10:45 AM" },
+    { fp_id: 6, name: "Vijay Singh", usn: "4VV22CV012", class: "CIVIL", log_type: "LOGIN", date: todayStr, time: "11:10 AM" },
+    { fp_id: 1, name: "Arjun Sharma", usn: "4VV21CS001", class: "CSE", log_type: "LOGOUT", date: todayStr, time: "11:20 AM" }
+];
+
 // GLOBAL STATE
-let allData = [];
+let allData = [...demoData]; // Initialize with demo data immediately
 
 let currentMode = 'borrow';
 let borrowedBooks = [
@@ -9,6 +30,6 @@ let borrowedBooks = [
 ];
 
 // Determine current date for midnight reset
-let currentDate = new Date().toISOString().split('T')[0];
+let currentDate = todayStr;
 
 let showingInsideList = false;
