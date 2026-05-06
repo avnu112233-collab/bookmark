@@ -1,0 +1,84 @@
+/* TABLE STYLES */
+.table-container {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.table-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+.table th {
+    text-align: left;
+    padding: 16px 24px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.table td {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 14px;
+}
+
+.table tbody tr:hover {
+    background: var(--color-surface-hover);
+}
+
+/* BADGES */
+.badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-login {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-logout {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--color-danger);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.usn-badge {
+    font-family: monospace;
+    background: var(--color-surface-hover);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}

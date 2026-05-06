@@ -1,0 +1,144 @@
+/* MODAL STYLES */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    background: var(--color-surface);
+    width: 90%;
+    max-width: 500px;
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.modal-overlay.active .modal {
+    transform: translateY(0);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.modal-actions button {
+    flex: 1;
+}
+
+/* SCANNING ANIMATION */
+.scanning-animation {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 24px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scanning-animation::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(34, 184, 163, 0.1);
+    animation: pulse 2s infinite;
+}
+
+.scanning-animation svg {
+    width: 64px;
+    height: 64px;
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 10px rgba(34, 184, 163, 0.5));
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 184, 163, 0.4);
+    }
+
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 20px rgba(34, 184, 163, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 184, 163, 0);
+    }
+}
+
+.usn-manual-bar {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-primary);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.usn-manual-bar:hover {
+    text-decoration: underline;
+}
+
+/* STUDENT INFO IN MODAL */
+.student-info {
+    background: var(--color-background);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    text-align: left;
+    border: 1px solid var(--color-border);
+}
+
+.student-info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.student-info-label {
+    color: var(--color-text-secondary);
+}
+
+.student-info-value {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.status-message {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    display: none;
+}

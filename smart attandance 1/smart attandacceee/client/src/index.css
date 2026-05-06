@@ -1,0 +1,371 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f5;
+  font-size: 18px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Minimal, clean design */
+.app-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Menu styling */
+.ant-menu {
+  background: transparent !important;
+  color: white !important;
+}
+
+.ant-menu-item {
+  color: white !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  margin: 8px 0 !important;
+  border-radius: 8px;
+  padding: 16px 24px !important;
+  height: auto !important;
+  line-height: 1.5 !important;
+}
+
+.ant-menu-item-icon {
+  color: white !important;
+  font-size: 22px !important;
+}
+
+.ant-menu-item:hover {
+  color: white !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.ant-menu-item:hover .ant-menu-item-icon {
+  color: white !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #DAF1DE !important;
+  color: #1b463e !important;
+}
+
+.ant-menu-item-selected .ant-menu-item-icon {
+  color: #1b463e !important;
+}
+
+/* Increase all headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold !important;
+}
+
+h1 {
+  font-size: 36px !important;
+}
+
+h2 {
+  font-size: 28px !important;
+}
+
+h3 {
+  font-size: 24px !important;
+}
+
+/* Increase table font sizes */
+.ant-table {
+  font-size: 16px !important;
+}
+
+.ant-table-thead>tr>th {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+}
+
+/* Increase button font sizes */
+/* Button styles removed to allow overrides */
+
+/* Increase form labels and inputs */
+.ant-form-item-label>label {
+  font-size: 17px !important;
+}
+
+.ant-input,
+.ant-select-selector,
+.ant-picker {
+  font-size: 16px !important;
+}
+
+/* Increase card titles */
+.ant-card-head-title {
+  font-size: 22px !important;
+  font-weight: bold !important;
+}
+
+
+/* Login page styles */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-highlight) 100%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--color-primary);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+:root {
+  --color-bg-primary: #DAF1DE;
+  /* 60% - Background */
+  --color-primary: #1b463e;
+  /* 30% - Sidebar/Header */
+  --color-accent: #0B2B26;
+  /* 10% - Buttons/Actions */
+}
+
+/* Dashboard styles */
+.dashboard-stats {
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+}
+
+/* Table styles */
+.table-container {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+/* Form styles */
+.form-container {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+/* Status badge */
+/* Status badge */
+.status-in {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.status-out {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* System info */
+.system-info-card {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.info-item {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.info-value {
+  color: var(--color-primary);
+  font-family: monospace;
+  font-size: 16px;
+}
+
+/* Hardware guide */
+.hardware-guide {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.hardware-guide h3 {
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.hardware-guide pre {
+  background: var(--color-bg-primary);
+  padding: 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.hardware-guide code {
+  color: var(--color-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-card {
+    margin: 20px;
+  }
+
+  .stat-value {
+    font-size: 32px;
+  }
+}
+
+/* Dark Theme Styles */
+.dark-theme body,
+.dark-theme .app-container {
+  background-color: #141414 !important;
+  color: #e0e0e0;
+}
+
+.dark-theme .ant-layout,
+.dark-theme .ant-layout-sider,
+.dark-theme .ant-layout-header {
+  background: #1f1f1f !important;
+  border-color: #303030 !important;
+}
+
+.dark-theme .ant-layout-sider-children {
+  background: #1f1f1f !important;
+}
+
+.dark-theme .ant-menu {
+  background: #1f1f1f !important;
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-menu-item {
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-menu-item-selected {
+  background-color: #333 !important;
+  color: #4caf50 !important;
+}
+
+/* Table Header Styles */
+.ant-table-thead>tr>th {
+  background-color: #DAF1DE !important;
+  color: #1b463e !important;
+  font-weight: bold !important;
+}
+
+.dark-theme .ant-card,
+.dark-theme .ant-card-head,
+.dark-theme .ant-card-body {
+  background: #1f1f1f !important;
+  border-color: #303030 !important;
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-card-head-title {
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-table {
+  background: #1f1f1f !important;
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-table-thead>tr>th {
+  background: #2a2a2a !important;
+  color: #e0e0e0 !important;
+  border-bottom: 1px solid #303030 !important;
+}
+
+.dark-theme .ant-table-tbody>tr>td {
+  background: #1f1f1f !important;
+  color: #e0e0e0 !important;
+  border-bottom: 1px solid #303030 !important;
+}
+
+.dark-theme .ant-table-tbody>tr:hover>td {
+  background: #2a2a2a !important;
+}
+
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6,
+.dark-theme div {
+  color: #e0e0e0;
+}
+
+.dark-theme .ant-typography {
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-descriptions-item-label {
+  background-color: #2a2a2a !important;
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-descriptions-item-content {
+  background-color: #1f1f1f !important;
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-steps-item-title,
+.dark-theme .ant-steps-item-description {
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-btn-text {
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .ant-btn-text:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
