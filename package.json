@@ -1,15 +1,21 @@
 {
     "name": "bookmark",
     "version": "1.0.0",
-    "description": "",
+    "description": "A state-of-the-art Library Management System for VVCE with biometric attendance and secure book tracking.",
     "main": "index.html",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "library-management",
+        "biometrics",
+        "attendance-tracker",
+        "vvce",
+        "bookmark"
+    ],
+    "author": "avnu112233-collab",
     "license": "ISC",
     "devDependencies": {
         "vite": "^5.0.0"
